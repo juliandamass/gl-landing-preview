@@ -595,14 +595,68 @@ const Home = () => {
       </section>
 
       <section className="mt-22">
-        <div className="max-w-[1436px] lg:px-6 mx-auto">
-          <Image
-            src="/images/community.png"
-            width="1500"
-            height="1500"
-            alt="Logo"
-            className="w-full h-auto rounded-2xl object-cover"
-          />
+        <div className="max-w-[1436px] lg:px-6 mx-auto overflow-hidden">
+          <div className="flex flex-col lg:flex-row w-full bg-black rounded-2xl">
+            <Image
+              src="/images/build.png"
+              width="1000"
+              height="1000"
+              alt="Logo"
+              className="hidden lg:flex flex-shrink-0 w-full max-w-[890px] h-auto rounded-2xl object-cover"
+            />
+            <Image
+              src="/images/build-1-m.png"
+              width="1000"
+              height="1000"
+              alt="Logo"
+              className="lg:hidden flex-shrink-0 self-end w-56 h-auto -mt-8 rounded-2xl object-cover"
+            />
+            <div className="flex flex-col items-center justify-center lg:-ml-24 space-y-10 px-4 lg:px-0 py-6 lg:pt-16 lg:pb-0">
+              <Image
+                src="/images/build-community.png"
+                width="500"
+                height="500"
+                alt="Logo"
+                className="w-[460px] h-auto rounded-2xl object-cover"
+              />
+              <div className="flex items-center space-x-10">
+                <Link href="/">
+                  <Image
+                    src="/images/logo-twitter.png"
+                    width="100"
+                    height="100"
+                    alt="Logo"
+                    className="w-16 lg:w-18 h-16 lg:h-18 object-contain"
+                  />
+                </Link>
+                <Link href="/">
+                  <Image
+                    src="/images/logo-medium.png"
+                    width="100"
+                    height="100"
+                    alt="Logo"
+                    className="w-16 lg:w-18 h-16 lg:h-18 object-contain"
+                  />
+                </Link>
+                <Link href="/">
+                  <Image
+                    src="/images/logo-discord.png"
+                    width="100"
+                    height="100"
+                    alt="Logo"
+                    className="w-16 lg:w-18 h-16 lg:h-18 object-contain"
+                  />
+                </Link>
+              </div>
+            </div>
+            <Image
+              src="/images/build-2-m.png"
+              width="1000"
+              height="1000"
+              alt="Logo"
+              className="lg:hidden flex-shrink-0 w-56 h-auto -ml-6 rounded-2xl object-cover"
+            />
+          </div>
         </div>
       </section>
 
@@ -645,7 +699,7 @@ const Home = () => {
               <Disclosure>
                 {({ open }) => (
                   <>
-                    <Disclosure.Button className="relative z-[2] flex items-center justify-between w-full px-10 py-6 bg-gl-4 rounded-2xl text-xl text-left">
+                    <Disclosure.Button className="relative z-[2] flex items-center justify-between w-full px-4 lg:px-10 py-4 lg:py-6 space-x-4 bg-gl-4 rounded-2xl text-sm lg:text-xl text-left">
                       <p className="font-bold">Do I need an NFT to use GenerateLabs.App?</p>
                       {open ? (
                         <Icon icon="heroicons-outline:minus" className="text-2xl" />
@@ -661,9 +715,9 @@ const Home = () => {
                       leaveFrom="transform scale-100 opacity-100"
                       leaveTo="transform scale-95 opacity-0"
                     >
-                      <Disclosure.Panel className="relative z-[2] w-full -mt-10 bg-gl-4 rounded-2xl text-xl text-left">
-                        <div className="w-full px-10 pt-10">
-                          <div className="w-full px-0 lg:px-16 py-8 border-t border-gl-3">
+                      <Disclosure.Panel className="relative z-[2] w-full -mt-8 lg:-mt-10 bg-gl-4 rounded-2xl text-sm lg:text-xl text-left">
+                        <div className="w-full px-6 lg:px-10 pt-8 lg:pt-10">
+                          <div className="w-full px-0 lg:px-16 py-6 lg:py-8 border-t border-gl-3">
                             Lorem ipsum dolor, sit amet consectetur adipisicing elit. Perferendis
                             iste provident ducimus ab eum numquam, magni sint aperiam voluptas
                             accusantium facilis dolorem cupiditate dignissimos beatae impedit
@@ -681,7 +735,7 @@ const Home = () => {
               <Disclosure>
                 {({ open }) => (
                   <>
-                    <Disclosure.Button className="relative z-[2] flex items-center justify-between w-full px-10 py-6 bg-black rounded-2xl text-xl text-left text-white">
+                    <Disclosure.Button className="relative z-[2] flex items-center justify-between w-full px-4 lg:px-10 py-4 lg:py-6 space-x-4 bg-black rounded-2xl text-sm lg:text-xl text-left text-white">
                       <p className="font-bold">Is team pricing available?</p>
                       {open ? (
                         <Icon icon="heroicons-outline:minus" className="text-2xl" />
@@ -697,9 +751,9 @@ const Home = () => {
                       leaveFrom="transform scale-100 opacity-100"
                       leaveTo="transform scale-95 opacity-0"
                     >
-                      <Disclosure.Panel className="relative z-[2] w-full -mt-10 bg-black rounded-2xl text-xl text-left text-white">
-                        <div className="w-full px-10 pt-10">
-                          <div className="w-full px-0 lg:px-16 py-8 border-t border-gl-3">
+                      <Disclosure.Panel className="relative z-[2] w-full -mt-8 lg:-mt-10 bg-black rounded-2xl text-sm lg:text-xl text-left text-white">
+                        <div className="w-full px-6 lg:px-10 pt-8 lg:pt-10">
+                          <div className="w-full px-0 lg:px-16 py-6 lg:py-8 border-t border-gl-3">
                             Lorem ipsum dolor, sit amet consectetur adipisicing elit. Perferendis
                             iste provident ducimus ab eum numquam, magni sint aperiam voluptas
                             accusantium facilis dolorem cupiditate dignissimos beatae impedit
@@ -717,7 +771,7 @@ const Home = () => {
               <Disclosure>
                 {({ open }) => (
                   <>
-                    <Disclosure.Button className="relative z-[2] flex items-center justify-between w-full px-10 py-6 bg-gl-4 rounded-2xl text-xl text-left">
+                    <Disclosure.Button className="relative z-[2] flex items-center justify-between w-full px-4 lg:px-10 py-4 lg:py-6 space-x-4 bg-gl-4 rounded-2xl text-sm lg:text-xl text-left">
                       <p className="font-bold">Do I need an NFT to use GenerateLabs.App?</p>
                       {open ? (
                         <Icon icon="heroicons-outline:minus" className="text-2xl" />
@@ -733,9 +787,9 @@ const Home = () => {
                       leaveFrom="transform scale-100 opacity-100"
                       leaveTo="transform scale-95 opacity-0"
                     >
-                      <Disclosure.Panel className="relative z-[2] w-full -mt-10 bg-gl-4 rounded-2xl text-xl text-left">
-                        <div className="w-full px-10 pt-10">
-                          <div className="w-full px-0 lg:px-16 py-8 border-t border-gl-3">
+                      <Disclosure.Panel className="relative z-[2] w-full -mt-8 lg:-mt-10 bg-gl-4 rounded-2xl text-sm lg:text-xl text-left">
+                        <div className="w-full px-6 lg:px-10 pt-8 lg:pt-10">
+                          <div className="w-full px-0 lg:px-16 py-6 lg:py-8 border-t border-gl-3">
                             Lorem ipsum dolor, sit amet consectetur adipisicing elit. Perferendis
                             iste provident ducimus ab eum numquam, magni sint aperiam voluptas
                             accusantium facilis dolorem cupiditate dignissimos beatae impedit
@@ -753,7 +807,7 @@ const Home = () => {
               <Disclosure>
                 {({ open }) => (
                   <>
-                    <Disclosure.Button className="relative z-[2] flex items-center justify-between w-full px-10 py-6 bg-black rounded-2xl text-xl text-left text-white">
+                    <Disclosure.Button className="relative z-[2] flex items-center justify-between w-full px-4 lg:px-10 py-4 lg:py-6 space-x-4 bg-black rounded-2xl text-sm lg:text-xl text-left text-white">
                       <p className="font-bold">Is team pricing available?</p>
                       {open ? (
                         <Icon icon="heroicons-outline:minus" className="text-2xl" />
@@ -769,9 +823,9 @@ const Home = () => {
                       leaveFrom="transform scale-100 opacity-100"
                       leaveTo="transform scale-95 opacity-0"
                     >
-                      <Disclosure.Panel className="relative z-[2] w-full -mt-10 bg-black rounded-2xl text-xl text-left text-white">
-                        <div className="w-full px-10 pt-10">
-                          <div className="w-full px-0 lg:px-16 py-8 border-t border-gl-3">
+                      <Disclosure.Panel className="relative z-[2] w-full -mt-8 lg:-mt-10 bg-black rounded-2xl text-sm lg:text-xl text-left text-white">
+                        <div className="w-full px-6 lg:px-10 pt-8 lg:pt-10">
+                          <div className="w-full px-0 lg:px-16 py-6 lg:py-8 border-t border-gl-3">
                             Lorem ipsum dolor, sit amet consectetur adipisicing elit. Perferendis
                             iste provident ducimus ab eum numquam, magni sint aperiam voluptas
                             accusantium facilis dolorem cupiditate dignissimos beatae impedit
@@ -789,7 +843,7 @@ const Home = () => {
               <Disclosure>
                 {({ open }) => (
                   <>
-                    <Disclosure.Button className="relative z-[2] flex items-center justify-between w-full px-10 py-6 bg-gl-4 rounded-2xl text-xl text-left">
+                    <Disclosure.Button className="relative z-[2] flex items-center justify-between w-full px-4 lg:px-10 py-4 lg:py-6 space-x-4 bg-gl-4 rounded-2xl text-sm lg:text-xl text-left">
                       <p className="font-bold">Do I need an NFT to use GenerateLabs.App?</p>
                       {open ? (
                         <Icon icon="heroicons-outline:minus" className="text-2xl" />
@@ -805,9 +859,9 @@ const Home = () => {
                       leaveFrom="transform scale-100 opacity-100"
                       leaveTo="transform scale-95 opacity-0"
                     >
-                      <Disclosure.Panel className="relative z-[2] w-full -mt-10 bg-gl-4 rounded-2xl text-xl text-left">
-                        <div className="w-full px-10 pt-10">
-                          <div className="w-full px-0 lg:px-16 py-8 border-t border-gl-3">
+                      <Disclosure.Panel className="relative z-[2] w-full -mt-8 lg:-mt-10 bg-gl-4 rounded-2xl text-sm lg:text-xl text-left">
+                        <div className="w-full px-6 lg:px-10 pt-8 lg:pt-10">
+                          <div className="w-full px-0 lg:px-16 py-6 lg:py-8 border-t border-gl-3">
                             Lorem ipsum dolor, sit amet consectetur adipisicing elit. Perferendis
                             iste provident ducimus ab eum numquam, magni sint aperiam voluptas
                             accusantium facilis dolorem cupiditate dignissimos beatae impedit
@@ -825,7 +879,7 @@ const Home = () => {
               <Disclosure>
                 {({ open }) => (
                   <>
-                    <Disclosure.Button className="relative z-[2] flex items-center justify-between w-full px-10 py-6 bg-black rounded-2xl text-xl text-left text-white">
+                    <Disclosure.Button className="relative z-[2] flex items-center justify-between w-full px-4 lg:px-10 py-4 lg:py-6 space-x-4 bg-black rounded-2xl text-sm lg:text-xl text-left text-white">
                       <p className="font-bold">Is team pricing available?</p>
                       {open ? (
                         <Icon icon="heroicons-outline:minus" className="text-2xl" />
@@ -841,9 +895,9 @@ const Home = () => {
                       leaveFrom="transform scale-100 opacity-100"
                       leaveTo="transform scale-95 opacity-0"
                     >
-                      <Disclosure.Panel className="relative z-[2] w-full -mt-10 bg-black rounded-2xl text-xl text-left text-white">
-                        <div className="w-full px-10 pt-10">
-                          <div className="w-full px-0 lg:px-16 py-8 border-t border-gl-3">
+                      <Disclosure.Panel className="relative z-[2] w-full -mt-8 lg:-mt-10 bg-black rounded-2xl text-sm lg:text-xl text-left text-white">
+                        <div className="w-full px-6 lg:px-10 pt-8 lg:pt-10">
+                          <div className="w-full px-0 lg:px-16 py-6 lg:py-8 border-t border-gl-3">
                             Lorem ipsum dolor, sit amet consectetur adipisicing elit. Perferendis
                             iste provident ducimus ab eum numquam, magni sint aperiam voluptas
                             accusantium facilis dolorem cupiditate dignissimos beatae impedit
@@ -934,7 +988,7 @@ const Home = () => {
           <hr />
           <div className="gl-container px-4 lg:px-6 mx-auto">
             <div className="pt-18 pb-9">
-              <div className="flex flex-col lg:flex-row items-start justify-between">
+              <div className="flex flex-col lg:flex-row items-start justify-between space-y-6 lg:space-y-0">
                 <div className="space-y-4">
                   <div className="flex items-center space-x-14 mb-12">
                     <Image
@@ -996,8 +1050,8 @@ const Home = () => {
                     </p>
                   </div>
                 </div>
-                <div className="flex flex-col lg:flex-row space-x-0 lg:space-x-18">
-                  <div className="space-y-4">
+                <div className="flex flex-row flex-wrap space-x-0 lg:space-x-18">
+                  <div className="w-1/2 lg:w-auto space-y-4 mb-10">
                     <h2 className="text-xl text-white font-bold">Generate Labs</h2>
                     <div>
                       <Link href="/" className="text-white">
@@ -1011,7 +1065,7 @@ const Home = () => {
                     </div>
                   </div>
 
-                  <div className="space-y-4">
+                  <div className="w-1/2 lg:w-auto space-y-4 mb-10">
                     <h2 className="text-xl text-white font-bold">Product</h2>
                     <div>
                       <Link href="/" className="text-white">
@@ -1045,7 +1099,7 @@ const Home = () => {
                     </div>
                   </div>
 
-                  <div className="space-y-4">
+                  <div className="w-1/2 lg:w-auto space-y-4 mb-10">
                     <h2 className="text-xl text-white font-bold">Generate Labs</h2>
                     <div>
                       <Link href="/" className="text-white">
