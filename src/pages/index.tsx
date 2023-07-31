@@ -1,4 +1,4 @@
-import { Fragment, useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -6,6 +6,8 @@ import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { gsap } from "gsap";
 import { Icon } from "@iconify/react";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
+
+import { scrollToId } from "@/utils/CommonUtils";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -47,43 +49,176 @@ const headerResourcesMenu = [
   },
 ];
 
+const gallery1List = [
+  {
+    imageUrl: "/images/gallery-image-1.png",
+    username: "Alena Franci",
+    creatorName: "@generatelabs",
+  },
+  {
+    imageUrl: "/images/gallery-image-2.png",
+    username: "Lincoln Korsgaard",
+    creatorName: "@gigixdreams",
+  },
+  {
+    imageUrl: "/images/gallery-image-3.png",
+    username: "Leo Korsgaard",
+    creatorName: "@varsbloom31x",
+  },
+  {
+    imageUrl: "/images/gallery-image-4.png",
+    username: "Allison Torff",
+    creatorName: "@nothingxspace",
+  },
+  {
+    imageUrl: "/images/gallery-image-5.png",
+    username: "Carter Botosh",
+    creatorName: "@minniebees",
+  },
+];
+
+const gallery2List = [
+  {
+    imageUrl: "/images/gallery-image-6.png",
+    username: "Talan Korsgaard",
+    creatorName: "@noodlescrate",
+  },
+  {
+    imageUrl: "/images/gallery-image-7.png",
+    username: "Maren Philips",
+    creatorName: "@raniana1997",
+  },
+  {
+    imageUrl: "/images/gallery-image-8.png",
+    username: "Jakob Rhiel Madsen",
+    creatorName: "@generatelabs",
+  },
+  {
+    imageUrl: "/images/gallery-image-9.png",
+    username: "Brandon Calzoni",
+    creatorName: "@hensbiz4shop",
+  },
+  {
+    imageUrl: "/images/gallery-image-10.png",
+    username: "Corey Workman",
+    creatorName: "@zfworks1",
+  },
+];
+
+const gallery3List = [
+  {
+    imageUrl: "/images/gallery-image-11.png",
+    username: "Green Dinosaur",
+    creatorName: "@blackdooms",
+  },
+  {
+    imageUrl: "/images/gallery-image-12.png",
+    username: "Tatiana Passaquindici Arcand",
+    creatorName: "@seed012",
+  },
+  {
+    imageUrl: "/images/gallery-image-13.png",
+    username: "Charlie Mango",
+    creatorName: "@thehungrydesigner",
+  },
+  {
+    imageUrl: "/images/gallery-image-14.png",
+    username: "Jaylon Calzoni",
+    creatorName: "@misscreations",
+  },
+  {
+    imageUrl: "/images/gallery-image-15.png",
+    username: "Cheyenne Korsgaard",
+    creatorName: "@blocks4u",
+  },
+];
+
+const gallery4List = [
+  {
+    imageUrl: "/images/gallery-image-16.png",
+    username: "Livia Rosser",
+    creatorName: "@bencrypts",
+  },
+  {
+    imageUrl: "/images/gallery-image-17.png",
+    username: "Randy Aminoff",
+    creatorName: "@thesailingman",
+  },
+  {
+    imageUrl: "/images/gallery-image-18.png",
+    username: "Rayna Philips",
+    creatorName: "@philipians",
+  },
+  {
+    imageUrl: "/images/gallery-image-19.png",
+    username: "Carla Lubin",
+    creatorName: "@cnibular",
+  },
+  {
+    imageUrl: "/images/gallery-image-20.png",
+    username: "Tiana Herwitz",
+    creatorName: "@afjherwitz",
+  },
+];
+
 const Home = () => {
+  const gallery1Ref = useRef<HTMLDivElement>(null);
+  const gallery2Ref = useRef<HTMLDivElement>(null);
+  const gallery3Ref = useRef<HTMLDivElement>(null);
+  const gallery4Ref = useRef<HTMLDivElement>(null);
+  const containerGalleryRef = useRef<HTMLDivElement>(null);
+
   const [isShowMobileMenu, setIsShowMobileMenu] = useState<boolean>(false);
 
   useEffect(() => {
-    gsap.to("#nft-1", {
-      x: "-150%",
+    const gallery1 = gallery1Ref.current;
+    const gallery2 = gallery2Ref.current;
+    const gallery3 = gallery3Ref.current;
+    const gallery4 = gallery4Ref.current;
+    const containerGallery = containerGalleryRef.current;
+
+    gsap.to(gallery1, {
+      x: "-10%",
       ease: "none",
       scrollTrigger: {
-        start: "top top",
-        end: "bottom bottom",
+        trigger: containerGallery,
+        start: "top bottom",
         scrub: true,
       },
     });
-    gsap.to("#nft-2", {
-      x: "150%",
+    gsap.to(gallery2, {
+      x: "10%",
       ease: "none",
       scrollTrigger: {
-        start: "top top",
-        end: "bottom bottom",
+        trigger: "#container-gallery",
+        start: "top bottom",
         scrub: true,
       },
     });
-    gsap.to("#nft-3", {
-      x: "-150%",
+    gsap.to(gallery3, {
+      x: "-10%",
       ease: "none",
       scrollTrigger: {
-        start: "top top",
-        end: "bottom bottom",
+        trigger: "#container-gallery",
+        start: "top bottom",
+        scrub: true,
+      },
+    });
+    gsap.to(gallery4, {
+      x: "10%",
+      ease: "none",
+      scrollTrigger: {
+        trigger: "#container-gallery",
+        start: "top bottom",
         scrub: true,
       },
     });
   }, []);
 
   return (
-    <main>
-      <header className="relative z-50 gl-container px-4 lg:px-6 mx-auto bg-white">
-        <div className="relative z-20 flex items-center justify-between py-6 bg-white">
+    <main className="pt-18 lg:pt-26">
+      <header className="fixed top-0 left-0 z-50 w-full bg-white">
+        <div className="relative z-20 flex items-center justify-between w-full gl-container px-4 lg:px-6 mx-auto py-6 bg-white">
           <div className="flex items-center justify-center space-x-11">
             <Link href="/">
               <Image
@@ -95,7 +230,7 @@ const Home = () => {
               />
             </Link>
             <nav className="hidden lg:flex items-center justify-center space-x-4">
-              <Menu as="div" className="relative">
+              {/* <Menu as="div" className="relative">
                 <Menu.Button className="flex items-center justify-center space-x-2 px-4 py-2 bg-white hover:bg-gl-5 border border-transparent rounded-lg transition-all">
                   <span className="text-xl">Products</span>
                   <Icon icon="heroicons-outline:chevron-down" className="text-2xl" />
@@ -132,8 +267,8 @@ const Home = () => {
                     </div>
                   </Menu.Items>
                 </Transition>
-              </Menu>
-              <Menu as="div" className="relative">
+              </Menu> */}
+              {/* <Menu as="div" className="relative">
                 <Menu.Button className="flex items-center justify-center space-x-2 px-4 py-2 bg-white hover:bg-gl-5 border border-transparent rounded-lg transition-all">
                   <span className="text-xl">Resources</span>
                   <Icon icon="heroicons-outline:chevron-down" className="text-2xl" />
@@ -170,13 +305,17 @@ const Home = () => {
                     </div>
                   </Menu.Items>
                 </Transition>
-              </Menu>
-              <button className="flex items-center justify-center space-x-2 px-4 py-2 bg-white hover:bg-gl-5 border border-transparent rounded-lg transition-all">
+              </Menu> */}
+              <button
+                type="button"
+                className="flex items-center justify-center space-x-2 px-4 py-2 bg-white hover:bg-gl-5 border border-transparent rounded-lg transition-all"
+                onClick={() => scrollToId("section-faq")}
+              >
                 <span className="text-xl">FAQ</span>
               </button>
-              <button className="flex items-center justify-center space-x-2 px-4 py-2 bg-white hover:bg-gl-5 border border-transparent rounded-lg transition-all">
+              {/* <button className="flex items-center justify-center space-x-2 px-4 py-2 bg-white hover:bg-gl-5 border border-transparent rounded-lg transition-all">
                 <span className="text-xl">Pricing</span>
-              </button>
+              </button> */}
             </nav>
           </div>
           <div className="hidden lg:flex items-center justify-center space-x-4">
@@ -193,7 +332,6 @@ const Home = () => {
               <span className="text-xl">Sign up</span>
             </button>
           </div>
-
           <button
             type="button"
             className="lg:hidden"
@@ -206,15 +344,14 @@ const Home = () => {
             )}
           </button>
         </div>
-
         <div
           className={`relative z-10 flex lg:hidden w-full h-screen ${
             isShowMobileMenu ? "-mt-[83px]" : "-mt-[1200px]"
-          }  pt-[83px] transition-all`}
+          } pt-[83px] px-4 transition-all`}
         >
           <div className="flex flex-col justify-between w-full pt-4 pb-9">
             <div className="divide-y">
-              <div>
+              {/* <div>
                 <Disclosure>
                   {({ open }) => (
                     <>
@@ -249,8 +386,8 @@ const Home = () => {
                     </>
                   )}
                 </Disclosure>
-              </div>
-              <div>
+              </div> */}
+              {/* <div>
                 <Disclosure>
                   {({ open }) => (
                     <>
@@ -285,21 +422,26 @@ const Home = () => {
                     </>
                   )}
                 </Disclosure>
-              </div>
+              </div> */}
               <div>
-                <Link href="/">
-                  <button className="flex items-center justify-between w-full py-4">
-                    <p className="text-xl font-medium">FAQ</p>
-                  </button>
-                </Link>
+                <button
+                  type="button"
+                  className="flex items-center justify-between w-full py-4"
+                  onClick={() => {
+                    setIsShowMobileMenu(false);
+                    scrollToId("section-faq");
+                  }}
+                >
+                  <p className="text-xl font-medium">FAQ</p>
+                </button>
               </div>
-              <div>
+              {/* <div>
                 <Link href="/">
                   <button className="flex items-center justify-between w-full py-4">
                     <p className="text-xl font-medium">Pricing</p>
                   </button>
                 </Link>
-              </div>
+              </div> */}
             </div>
             <div className="w-full flex items-center justify-center space-x-4">
               <button
@@ -319,7 +461,7 @@ const Home = () => {
         </div>
       </header>
 
-      <section className="pt-[66px] lg:pt-0 mt-4">
+      <section className="mt-4">
         <div className="gl-container lg:px-6 mx-auto">
           <div className="relative flex flex-col lg:flex-row bg-black lg:rounded-2xl overflow-hidden">
             <Image
@@ -338,11 +480,12 @@ const Home = () => {
                 className="w-full max-w-[414px] h-auto"
               />
               <div className="lg:hidden relative z-[2] flex-shrink-0">
-                <Image
-                  src="/images/hero.png"
-                  width="1600"
-                  height="1600"
-                  alt="Logo"
+                <video
+                  src="/videos/hero-video.mp4"
+                  loop
+                  autoPlay
+                  playsInline
+                  muted
                   className="w-full max-w-[780px] h-auto"
                 />
               </div>
@@ -358,11 +501,12 @@ const Home = () => {
               </button>
             </div>
             <div className="hidden lg:block relative z-[2] flex-shrink-0 pl-4 pt-24 pb-7">
-              <Image
-                src="/images/hero.png"
-                width="1600"
-                height="1600"
-                alt="Logo"
+              <video
+                src="/videos/hero-video.mp4"
+                loop
+                autoPlay
+                playsInline
+                muted
                 className="w-full max-w-[780px] h-auto"
               />
             </div>
@@ -503,94 +647,14 @@ const Home = () => {
             <div className="-mt-34 -mb-20">
               <video
                 src="/videos/navigable.mp4"
-                autoPlay
-                muted
                 loop
+                autoPlay
+                playsInline
+                muted
                 className="w-full max-w-4xl mx-auto"
               />
             </div>
           </div>
-        </div>
-      </section>
-
-      <section className="mt-22 overflow-hidden">
-        <div id="nft-1" className="flex whitespace-nowrap space-x-4 mb-4">
-          {new Array(30).fill(undefined).map((nft, index: number) => (
-            <div
-              key={index}
-              className="flex-shrink-0 w-40 lg:w-64 bg-white p-2 border border-gl-3 rounded-2xl"
-            >
-              <div className="square">
-                <div className="square-content">
-                  <div className="w-full h-full rounded-2xl">
-                    <Image
-                      src="/images/nft.png"
-                      width="700"
-                      height="700"
-                      alt="Logo"
-                      className="w-full h-full object-cover rounded-2xl"
-                    />
-                  </div>
-                </div>
-              </div>
-              <div className="flex items-center justify-between pt-3 pb-1">
-                <p className="text-[6px] lg:text-sm font-medium">Green Dinosaur</p>
-                <p className="text-gl-3 text-[4px] lg:text-sm">@creator</p>
-              </div>
-            </div>
-          ))}
-        </div>
-        <div id="nft-2" className="flex flex-row-reverse whitespace-nowrap space-x-4 mb-4">
-          {new Array(30).fill(undefined).map((nft, index: number) => (
-            <div
-              key={index}
-              className="flex-shrink-0 w-40 lg:w-64 bg-white p-2 border border-gl-3 rounded-2xl"
-            >
-              <div className="square">
-                <div className="square-content">
-                  <div className="w-full h-full rounded-2xl">
-                    <Image
-                      src="/images/nft.png"
-                      width="700"
-                      height="700"
-                      alt="Logo"
-                      className="w-full h-full object-cover rounded-2xl"
-                    />
-                  </div>
-                </div>
-              </div>
-              <div className="flex items-center justify-between pt-3 pb-1">
-                <p className="text-[6px] lg:text-sm font-medium">Green Dinosaur</p>
-                <p className="text-gl-3 text-[4px] lg:text-sm">@creator</p>
-              </div>
-            </div>
-          ))}
-        </div>
-        <div id="nft-3" className="flex whitespace-nowrap space-x-4 mb-4">
-          {new Array(30).fill(undefined).map((nft, index: number) => (
-            <div
-              key={index}
-              className="flex-shrink-0 w-40 lg:w-64 bg-white p-2 border border-gl-3 rounded-2xl"
-            >
-              <div className="square">
-                <div className="square-content">
-                  <div className="w-full h-full rounded-2xl">
-                    <Image
-                      src="/images/nft.png"
-                      width="700"
-                      height="700"
-                      alt="Logo"
-                      className="w-full h-full object-cover rounded-2xl"
-                    />
-                  </div>
-                </div>
-              </div>
-              <div className="flex items-center justify-between pt-3 pb-1">
-                <p className="text-[6px] lg:text-sm font-medium">Green Dinosaur</p>
-                <p className="text-gl-3 text-[4px] lg:text-sm">@creator</p>
-              </div>
-            </div>
-          ))}
         </div>
       </section>
 
@@ -660,6 +724,123 @@ const Home = () => {
         </div>
       </section>
 
+      <section ref={containerGalleryRef} id="container-gallery" className="mt-22 overflow-hidden">
+        <div className="max-w-[1436px] lg:px-6 mx-auto">
+          <div ref={gallery1Ref} id="gallery-1" className="flex whitespace-nowrap space-x-4 mb-4">
+            {gallery1List.map((gallery1, index: number) => (
+              <div
+                key={index}
+                className="flex-shrink-0 w-40 lg:lg:w-[308px] bg-white p-2 border border-gl-3 rounded-2xl"
+              >
+                <div className="square">
+                  <div className="square-content">
+                    <div className="w-full h-full rounded-2xl">
+                      <Image
+                        src={gallery1.imageUrl}
+                        width="700"
+                        height="700"
+                        alt="Logo"
+                        className="w-full h-full object-cover rounded-2xl"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div className="flex items-center justify-between pt-3 pb-1">
+                  <p className="text-[6px] lg:text-sm font-medium">{gallery1.username}</p>
+                  <p className="text-gl-3 text-[4px] lg:text-sm">{gallery1.creatorName}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+          <div
+            ref={gallery2Ref}
+            id="gallery-2"
+            className="flex flex-row-reverse whitespace-nowrap space-x-4 space-x-reverse mb-4"
+          >
+            {gallery2List.map((gallery2, index: number) => (
+              <div
+                key={index}
+                className="flex-shrink-0 w-40 lg:lg:w-[308px] bg-white p-2 border border-gl-3 rounded-2xl"
+              >
+                <div className="square">
+                  <div className="square-content">
+                    <div className="w-full h-full rounded-2xl">
+                      <Image
+                        src={gallery2.imageUrl}
+                        width="700"
+                        height="700"
+                        alt="Logo"
+                        className="w-full h-full object-cover rounded-2xl"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div className="flex items-center justify-between pt-3 pb-1">
+                  <p className="text-[6px] lg:text-sm font-medium">{gallery2.username}</p>
+                  <p className="text-gl-3 text-[4px] lg:text-sm">{gallery2.creatorName}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+          <div ref={gallery3Ref} id="gallery-3" className="flex whitespace-nowrap space-x-4 mb-4">
+            {gallery3List.map((gallery3, index: number) => (
+              <div
+                key={index}
+                className="flex-shrink-0 w-40 lg:lg:w-[308px] bg-white p-2 border border-gl-3 rounded-2xl"
+              >
+                <div className="square">
+                  <div className="square-content">
+                    <div className="w-full h-full rounded-2xl">
+                      <Image
+                        src={gallery3.imageUrl}
+                        width="700"
+                        height="700"
+                        alt="Logo"
+                        className="w-full h-full object-cover rounded-2xl"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div className="flex items-center justify-between pt-3 pb-1">
+                  <p className="text-[6px] lg:text-sm font-medium">{gallery3.username}</p>
+                  <p className="text-gl-3 text-[4px] lg:text-sm">{gallery3.creatorName}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+          <div
+            ref={gallery4Ref}
+            id="gallery-4"
+            className="flex flex-row-reverse whitespace-nowrap space-x-4 space-x-reverse mb-4"
+          >
+            {gallery4List.map((gallery4, index: number) => (
+              <div
+                key={index}
+                className="flex-shrink-0 w-40 lg:lg:w-[308px] bg-white p-2 border border-gl-3 rounded-2xl"
+              >
+                <div className="square">
+                  <div className="square-content">
+                    <div className="w-full h-full rounded-2xl">
+                      <Image
+                        src={gallery4.imageUrl}
+                        width="700"
+                        height="700"
+                        alt="Logo"
+                        className="w-full h-full object-cover rounded-2xl"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div className="flex items-center justify-between pt-3 pb-1">
+                  <p className="text-[6px] lg:text-sm font-medium">{gallery4.username}</p>
+                  <p className="text-gl-3 text-[4px] lg:text-sm">{gallery4.creatorName}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       <section className="mt-22">
         <div className="gl-container px-4 lg:px-6 mx-auto">
           <Image
@@ -689,7 +870,7 @@ const Home = () => {
         </div>
       </section>
 
-      <section className="mt-22">
+      <section id="section-faq" className="mt-22">
         <div className="gl-container px-4 lg:px-6 mx-auto">
           <div className="max-w-3xl mb-15 mx-auto space-y-10 text-center">
             <h2 className="text-[64px] font-bold">FAQ</h2>
@@ -969,7 +1150,7 @@ const Home = () => {
                     Stay up to date with the latest announcement, news, and new features.
                   </p>
                 </div>
-                <div className="flex items-center space-x-3.5 mt-6 lg:mt-0">
+                <div className="flex flex-col lg:flex-row items-start lg:items-center w-full lg:w-auto lg:space-x-3.5 space-y-5 lg:space-y-0 mt-6 lg:mt-0">
                   <input
                     type="text"
                     placeholder="Enter email"
@@ -990,54 +1171,54 @@ const Home = () => {
             <div className="pt-18 pb-9">
               <div className="flex flex-col lg:flex-row items-start justify-between space-y-6 lg:space-y-0">
                 <div className="space-y-4">
-                  <div className="flex items-center space-x-14 mb-12">
+                  <div className="flex items-center space-x-5 lg:space-x-14 mb-12">
                     <Image
                       src="/images/logo-white.png"
                       width="150"
                       height="150"
                       alt="Logo"
-                      className="w-30 h-auto"
+                      className="w-26 lg:w-30 h-auto"
                     />
-                    <div className="flex items-center space-x-4">
+                    <div className="flex items-center space-x-3 lg:space-x-4">
                       <Link href="/">
                         <button
                           type="button"
-                          className="flex items-center justify-center w-12 h-12 bg-gl-1 rounded-lg"
+                          className="flex items-center justify-center w-8 lg:w-12 h-8 lg:h-12 bg-gl-1 rounded-lg"
                         >
                           <Image
                             src="/images/logo-twitter.png"
                             width="32"
                             height="32"
                             alt="Logo"
-                            className="w-6 h-6 object-contain"
+                            className="w-4 lg:w-6 h-4 lg:h-6 object-contain"
                           />
                         </button>
                       </Link>
                       <Link href="/">
                         <button
                           type="button"
-                          className="flex items-center justify-center w-12 h-12 bg-gl-1 rounded-lg"
+                          className="flex items-center justify-center w-8 lg:w-12 h-8 lg:h-12 bg-gl-1 rounded-lg"
                         >
                           <Image
                             src="/images/logo-medium.png"
                             width="32"
                             height="32"
                             alt="Logo"
-                            className="w-6 h-6 object-contain"
+                            className="w-4 lg:w-6 h-4 lg:h-6 object-contain"
                           />
                         </button>
                       </Link>
                       <Link href="/">
                         <button
                           type="button"
-                          className="flex items-center justify-center w-12 h-12 bg-gl-1 rounded-lg"
+                          className="flex items-center justify-center w-8 lg:w-12 h-8 lg:h-12 bg-gl-1 rounded-lg"
                         >
                           <Image
                             src="/images/logo-discord.png"
                             width="32"
                             height="32"
                             alt="Logo"
-                            className="w-6 h-6 object-contain"
+                            className="w-4 lg:w-6 h-4 lg:h-6 object-contain"
                           />
                         </button>
                       </Link>
