@@ -570,7 +570,16 @@ const Home = () => {
                   alt="Logo"
                   className="w-full h-auto rounded-2xl object-cover"
                 />
-                <div className="absolute left-0 top-0 flex items-end w-full h-full px-5 lg:px-10 py-7 lg:py-16">
+                <div className="absolute left-0 top-0 flex flex-col items-start justify-end w-full h-full px-5 lg:px-10 py-7 lg:py-16">
+                  <div className="w-full mb-4 lg:mb-12">
+                    <Image
+                      src="/images/perfect-2-image.png"
+                      width="700"
+                      height="700"
+                      alt="Logo"
+                      className="w-full max-w-[276px] lg:max-w-[480px] h-auto mx-auto"
+                    />
+                  </div>
                   <div className="w-full max-w-[560px]">
                     <h2 className="mb-5 lg:mb-10 text-[28px] lg:text-5xl text-white font-bold leading-tight">
                       Discover the Art engine
