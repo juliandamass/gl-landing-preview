@@ -11,47 +11,10 @@ import TwitterIcon from "@/components/icons/twitter-icon";
 import MediumIcon from "@/components/icons/medium-icon";
 import DiscordIcon from "@/components/icons/discord-icon";
 
-import { scrollToId } from "@/utils/CommonUtils";
+import MainLayout from "@/layouts/main-layout";
+import ComingSoonModal from "@/components/modals/coming-soon-modal";
 
 gsap.registerPlugin(ScrollTrigger);
-
-const headerProductsMenu = [
-  {
-    url: "/",
-    label: "Nft Generator",
-  },
-  {
-    url: "/",
-    label: "Forms",
-  },
-  {
-    url: "/",
-    label: "Drops",
-  },
-  {
-    url: "/",
-    label: "Marketplace",
-  },
-  {
-    url: "/",
-    label: "Courses",
-  },
-];
-
-const headerResourcesMenu = [
-  {
-    url: "/",
-    label: "Blog",
-  },
-  {
-    url: "/",
-    label: "Join Our Community",
-  },
-  {
-    url: "/",
-    label: "Help Docs",
-  },
-];
 
 const gallery1List = [
   {
@@ -199,7 +162,6 @@ const Home = () => {
   const gallery4Ref = useRef<HTMLDivElement>(null);
   const containerGalleryRef = useRef<HTMLDivElement>(null);
 
-  const [isOpenMobileMenu, setIsOpenMobileMenu] = useState<boolean>(false);
   const [isOpenComingSoonModal, setIsOpenComingSoonModal] = useState<boolean>(false);
 
   useEffect(() => {
@@ -249,252 +211,7 @@ const Home = () => {
 
   return (
     <>
-      <main className="pt-18 lg:pt-26">
-        <header className="fixed top-0 left-0 z-10 w-full bg-white">
-          <div className="relative z-20 flex items-center justify-between w-full gl-container px-4 lg:px-6 mx-auto py-6 bg-white">
-            <div className="flex items-center justify-center space-x-11">
-              <Link href="/">
-                <Image
-                  src="/images/logo-main.png"
-                  width="200"
-                  height="200"
-                  alt="Logo"
-                  className="w-24 lg:w-[150px] h-auto"
-                />
-              </Link>
-              <nav className="hidden lg:flex items-center justify-center space-x-4">
-                {/* <Menu as="div" className="relative">
-                  <Menu.Button className="flex items-center justify-center space-x-2 px-4 py-2 bg-white hover:bg-gl-5 border border-transparent rounded-lg transition-all">
-                    <span className="text-xl">Products</span>
-                    <Icon icon="heroicons-outline:chevron-down" className="text-2xl" />
-                  </Menu.Button>
-                  <Transition
-                    as={Fragment}
-                    enter="transition ease-out duration-100"
-                    enterFrom="transform opacity-0 scale-95"
-                    enterTo="transform opacity-100 scale-100"
-                    leave="transition ease-in duration-75"
-                    leaveFrom="transform opacity-100 scale-100"
-                    leaveTo="transform opacity-0 scale-95"
-                  >
-                    <Menu.Items className="absolute left-0 mt-2 origin-top-right divide-y divide-gray-100 rounded-2xl bg-white border border-gl-3">
-                      <div className="px-2 py-4">
-                        {headerProductsMenu.map((productMenu, index: number) => {
-                          return (
-                            <Menu.Item key={index}>
-                              {({ active }) => (
-                                <Link href={productMenu.url}>
-                                  <button
-                                    type="button"
-                                    className={`${
-                                      active && "bg-gl-5"
-                                    } flex w-full items-center rounded-md px-2 py-2 text-xl text-left whitespace-nowrap`}
-                                  >
-                                    {productMenu.label}
-                                  </button>
-                                </Link>
-                              )}
-                            </Menu.Item>
-                          );
-                        })}
-                      </div>
-                    </Menu.Items>
-                  </Transition>
-                </Menu> */}
-                {/* <Menu as="div" className="relative">
-                  <Menu.Button className="flex items-center justify-center space-x-2 px-4 py-2 bg-white hover:bg-gl-5 border border-transparent rounded-lg transition-all">
-                    <span className="text-xl">Resources</span>
-                    <Icon icon="heroicons-outline:chevron-down" className="text-2xl" />
-                  </Menu.Button>
-                  <Transition
-                    as={Fragment}
-                    enter="transition ease-out duration-100"
-                    enterFrom="transform opacity-0 scale-95"
-                    enterTo="transform opacity-100 scale-100"
-                    leave="transition ease-in duration-75"
-                    leaveFrom="transform opacity-100 scale-100"
-                    leaveTo="transform opacity-0 scale-95"
-                  >
-                    <Menu.Items className="absolute left-0 mt-2 origin-top-right divide-y divide-gray-100 rounded-2xl bg-white border border-gl-3">
-                      <div className="px-2 py-4">
-                        {headerResourcesMenu.map((productMenu, index: number) => {
-                          return (
-                            <Menu.Item key={index}>
-                              {({ active }) => (
-                                <Link href={productMenu.url}>
-                                  <button
-                                    type="button"
-                                    className={`${
-                                      active && "bg-gl-5"
-                                    } flex w-full items-center rounded-md px-2 py-2 text-xl text-left whitespace-nowrap`}
-                                  >
-                                    {productMenu.label}
-                                  </button>
-                                </Link>
-                              )}
-                            </Menu.Item>
-                          );
-                        })}
-                      </div>
-                    </Menu.Items>
-                  </Transition>
-                </Menu> */}
-                <button
-                  type="button"
-                  className="flex items-center justify-center space-x-2 px-4 py-2 bg-white hover:bg-gl-5 border border-transparent rounded-lg transition-all"
-                  onClick={() => scrollToId("section-faq")}
-                >
-                  <span className="text-xl">FAQ</span>
-                </button>
-                {/* <button className="flex items-center justify-center space-x-2 px-4 py-2 bg-white hover:bg-gl-5 border border-transparent rounded-lg transition-all">
-                  <span className="text-xl">Pricing</span>
-                </button> */}
-              </nav>
-            </div>
-            <div className="hidden lg:flex items-center justify-center space-x-4">
-              <button
-                type="button"
-                className="flex items-center justify-center px-8 py-3 bg-white hover:bg-gl-2 border border-gl-1 hover:border-gl-2 rounded-2xl text-gl-1 hover:text-white transition-all"
-                onClick={() => setIsOpenComingSoonModal(true)}
-              >
-                <span className="text-xl">Log in</span>
-              </button>
-              <button
-                type="button"
-                className="flex items-center justify-center px-8 py-3 bg-gl-1 hover:bg-gl-7 border border-gl-1 hover:border-gl-7 rounded-2xl text-white hover:text-white transition-all"
-                onClick={() => setIsOpenComingSoonModal(true)}
-              >
-                <span className="text-xl">Sign up</span>
-              </button>
-            </div>
-            <button
-              type="button"
-              className="lg:hidden"
-              onClick={() => setIsOpenMobileMenu(!isOpenMobileMenu)}
-            >
-              {isOpenMobileMenu ? (
-                <Icon icon="heroicons-outline:x" className="text-2xl" />
-              ) : (
-                <Icon icon="heroicons-outline:menu" className="text-2xl" />
-              )}
-            </button>
-          </div>
-          <div
-            className={`relative z-10 flex lg:hidden w-full h-screen ${
-              isOpenMobileMenu ? "-mt-[83px]" : "-mt-[1200px]"
-            } pt-[83px] px-4 transition-all`}
-          >
-            <div className="flex flex-col justify-between w-full pt-4 pb-9">
-              <div className="divide-y">
-                {/* <div>
-                  <Disclosure>
-                    {({ open }) => (
-                      <>
-                        <Disclosure.Button className="flex items-center justify-between w-full py-4">
-                          <p className="text-xl font-medium">Products</p>
-                          <Icon icon="heroicons-outline:chevron-down" className="text-2xl" />
-                        </Disclosure.Button>
-                        <Transition
-                          enter="transition duration-100 ease-out"
-                          enterFrom="transform scale-95 opacity-0"
-                          enterTo="transform scale-100 opacity-100"
-                          leave="transition duration-75 ease-out"
-                          leaveFrom="transform scale-100 opacity-100"
-                          leaveTo="transform scale-95 opacity-0"
-                        >
-                          <Disclosure.Panel className="pb-4">
-                            <div className="flex flex-col space-y-2">
-                              {headerProductsMenu.map((productMenu, index: number) => {
-                                return (
-                                  <Link
-                                    key={index}
-                                    href={productMenu.url}
-                                    className="text-xl font-medium"
-                                  >
-                                    {productMenu.label}
-                                  </Link>
-                                );
-                              })}
-                            </div>
-                          </Disclosure.Panel>
-                        </Transition>
-                      </>
-                    )}
-                  </Disclosure>
-                </div> */}
-                {/* <div>
-                  <Disclosure>
-                    {({ open }) => (
-                      <>
-                        <Disclosure.Button className="flex items-center justify-between w-full py-4">
-                          <p className="text-xl font-medium">Resources</p>
-                          <Icon icon="heroicons-outline:chevron-down" className="text-2xl" />
-                        </Disclosure.Button>
-                        <Transition
-                          enter="transition duration-100 ease-out"
-                          enterFrom="transform scale-95 opacity-0"
-                          enterTo="transform scale-100 opacity-100"
-                          leave="transition duration-75 ease-out"
-                          leaveFrom="transform scale-100 opacity-100"
-                          leaveTo="transform scale-95 opacity-0"
-                        >
-                          <Disclosure.Panel className="pb-4">
-                            <div className="flex flex-col space-y-2">
-                              {headerResourcesMenu.map((productMenu, index: number) => {
-                                return (
-                                  <Link
-                                    key={index}
-                                    href={productMenu.url}
-                                    className="text-xl font-medium"
-                                  >
-                                    {productMenu.label}
-                                  </Link>
-                                );
-                              })}
-                            </div>
-                          </Disclosure.Panel>
-                        </Transition>
-                      </>
-                    )}
-                  </Disclosure>
-                </div> */}
-                <div>
-                  <button
-                    type="button"
-                    className="flex items-center justify-between w-full py-4"
-                    onClick={() => {
-                      setIsOpenMobileMenu(false);
-                      scrollToId("section-faq");
-                    }}
-                  >
-                    <p className="text-xl font-medium">FAQ</p>
-                  </button>
-                </div>
-                {/* <div>
-                  <Link href="/">
-                    <button className="flex items-center justify-between w-full py-4">
-                      <p className="text-xl font-medium">Pricing</p>
-                    </button>
-                  </Link>
-                </div> */}
-              </div>
-              <div className="w-full flex items-center justify-center space-x-4">
-                <button
-                  type="button"
-                  className="flex-1 flex items-center justify-center px-8 py-3 bg-white hover:bg-gl-2 border border-gl-1 hover:border-gl-2 rounded-2xl text-gl-1 hover:text-white transition-all"
-                >
-                  <span className="text-xl">Log in</span>
-                </button>
-                <button
-                  type="button"
-                  className="flex-1 flex items-center justify-center px-8 py-3 bg-gl-1 hover:bg-gl-1 border border-gl-1 hover:border-gl-1 rounded-2xl text-white hover:text-white transition-all"
-                >
-                  <span className="text-xl">Sign up</span>
-                </button>
-              </div>
-            </div>
-          </div>
-        </header>
+      <MainLayout>
         <section className="mt-4">
           <div className="gl-container lg:px-6 mx-auto">
             <div className="relative flex flex-col lg:flex-row bg-black lg:rounded-2xl overflow-hidden">
@@ -505,7 +222,7 @@ const Home = () => {
                 alt="Logo"
                 className="absolute left-0 top-0 hidden lg:block w-auto h-56 -ml-28"
               />
-              <div className="relative z-[2] px-4 lg:pl-28 lg:pr-20 pt-18 lg:pt-38 pb-13 lg:pb-0">
+              <div className="relative z-[2] px-4 lg:pl-28 lg:pr-20 pt-18 lg:pt-28 pb-13 lg:pb-0">
                 <Image
                   src="/images/hero-title.png"
                   width="1600"
@@ -523,7 +240,7 @@ const Home = () => {
                     className="w-full max-w-[780px] h-auto"
                   />
                 </div>
-                <p className="mb-16 lg:mb-20 text-base lg:text-2xl text-white font-light">
+                <p className="mb-16 lg:mb-12 text-base lg:text-2xl text-white font-light">
                   <span className="font-bold">A No-Code Tool</span> for Businesses, Artists,
                   Designers and Creators to build, create and generate NFT Collections.
                 </p>
@@ -535,7 +252,7 @@ const Home = () => {
                   <span className="text-2xl font-medium">Create for free</span>
                 </button>
               </div>
-              <div className="hidden lg:block relative z-[2] flex-shrink-0 pl-4 pt-24 pb-7">
+              <div className="hidden lg:block relative z-[2] flex-shrink-0 pl-4 pb-7">
                 <video
                   src="/videos/hero-video.mp4"
                   loop
@@ -550,11 +267,11 @@ const Home = () => {
         </section>
         <section className="mt-22">
           <div className="gl-container px-4 lg:px-6 mx-auto">
-            <div className="max-w-3xl mx-auto space-y-6 lg:space-y-10 text-center">
-              <h2 className="text-[32px] lg:text-[64px] font-bold leading-tight">
+            <div className="max-w-2xl mx-auto space-y-6 lg:space-y-10 text-center">
+              <h2 className="text-[32px] lg:text-5xl font-bold leading-tight">
                 A perfect fit for creators.
               </h2>
-              <h3 className="text-sm lg:text-2xl">
+              <h3 className="text-sm lg:text-xl">
                 Whether you&apos;re an artist, a business owner, or an enthusiast, GenerateLabs.App
                 is your gateway for Digital collectibles.
               </h3>
@@ -564,7 +281,7 @@ const Home = () => {
               width="1600"
               height="1600"
               alt="Logo"
-              className="w-full h-auto mt-4 rounded-2xl"
+              className="w-full max-w-5xl h-auto mt-4 mx-auto rounded-2xl"
             />
           </div>
         </section>
@@ -581,11 +298,11 @@ const Home = () => {
                     className="w-full h-auto rounded-2xl object-cover"
                   />
                   <div className="absolute left-0 top-0 flex w-full h-full px-5 lg:px-10 py-7 lg:py-16">
-                    <div className="w-full max-w-[460px]">
-                      <h2 className="mb-5 lg:mb-10 text-[28px] lg:text-5xl text-white font-bold leading-normal">
+                    <div className="w-full max-w-[490px]">
+                      <h2 className="mb-5 lg:mb-6 text-[28px] lg:text-5xl text-white font-bold leading-normal lg:leading-normal">
                         Empower Your Creativity
                       </h2>
-                      <p className="text-xs lg:text-xl text-white/50">
+                      <p className="text-xs lg:text-xl text-white">
                         No coding skills? No problem! Our intuitive platform enables artists,
                         designers, and businesses to easily create, build, and generate NFT
                         Collections without the need for technical expertise.
@@ -635,7 +352,16 @@ const Home = () => {
                     alt="Logo"
                     className="w-full h-auto rounded-2xl object-cover"
                   />
-                  <div className="absolute left-0 top-0 flex items-end w-full h-full px-5 lg:px-10 py-7 lg:py-16">
+                  <div className="absolute left-0 top-0 flex flex-col items-start justify-end w-full h-full px-5 lg:px-10 py-7 lg:py-16">
+                    <div className="w-full mb-11 lg:mb-14">
+                      <Image
+                        src="/images/perfect-3-image.svg"
+                        width="700"
+                        height="700"
+                        alt="Logo"
+                        className="w-full max-w-[164px] lg:max-w-[290px] h-auto ml-auto mr-10 lg:mr-12"
+                      />
+                    </div>
                     <div className="w-full max-w-[550px]">
                       <h2 className="mb-5 lg:mb-10 text-[28px] lg:text-5xl text-white font-bold leading-tight">
                         Seamless User Experience
@@ -663,7 +389,7 @@ const Home = () => {
                       <h2 className="mb-5 lg:mb-10 text-[28px] lg:text-5xl text-white font-bold leading-tight">
                         Customize Everything
                       </h2>
-                      <p className="text-xs lg:text-xl text-white/50">
+                      <p className="text-xs lg:text-xl text-white">
                         Whether you&apos;re organizing an exhibition, launching a creative campaign,
                         or seeking collaboration opportunities, our intuitive forms and custom
                         marketplace empower you to gather essential information and bring your
@@ -678,7 +404,7 @@ const Home = () => {
         </section>
         <section className="mt-10 lg:mt-40">
           <div className="gl-container px-4 lg:px-6 mx-auto">
-            <div className="relative z-[2] max-w-[800px] mx-auto space-y-10 text-center">
+            <div className="relative z-[2] max-w-[1016px] mx-auto space-y-10 text-center">
               <h2 className="text-2xl lg:text-5xl leading-tight">
                 <span className="font-bold">An easily navigable tool</span> that doesn&apos;t
                 require any coding expertise to operate effectively.
@@ -725,13 +451,13 @@ const Home = () => {
                 />
                 <div className="flex items-center space-x-10">
                   <Link href={process.env.NEXT_PUBLIC_TWITTER_URL || ""} target="_blank">
-                    <TwitterIcon className="w-16 lg:w-18 h-16 lg:h-18 fill-white hover:fill-green-600 transition-all" />
+                    <TwitterIcon className="w-16 lg:w-18 h-16 lg:h-18 fill-white hover:fill-gl-3 transition-all" />
                   </Link>
                   <Link href={process.env.NEXT_PUBLIC_MEDIUM_URL || ""} target="_blank">
-                    <MediumIcon className="w-16 lg:w-18 h-16 lg:h-18 fill-white hover:fill-green-600 transition-all" />
+                    <MediumIcon className="w-16 lg:w-18 h-16 lg:h-18 fill-white hover:fill-gl-3 transition-all" />
                   </Link>
                   <Link href={process.env.NEXT_PUBLIC_DISCORD_URL || ""} target="_blank">
-                    <DiscordIcon className="w-16 lg:w-18 h-16 lg:h-18 fill-white hover:fill-green-600 transition-all" />
+                    <DiscordIcon className="w-16 lg:w-18 h-16 lg:h-18 fill-white hover:fill-gl-3 transition-all" />
                   </Link>
                 </div>
               </div>
@@ -870,10 +596,12 @@ const Home = () => {
               alt="Logo"
               className="w-full max-w-4xl h-auto mx-auto"
             />
-            <div className="max-w-5xl mx-auto mt-4 space-y-10 text-center">
-              <h2 className="text-2xl lg:text-[64px] font-bold leading-tight">
+            <div className="max-w-3xl mx-auto mt-4 mb-10 text-center">
+              <h2 className="text-2xl lg:text-5xl font-bold leading-tight">
                 Join a Community of 2,500+ project founders
               </h2>
+            </div>
+            <div className="text-center">
               <h3 className="text-sm lg:text-2xl">
                 Share your projects, seek valuable marketing and launch advice from fellow digital
                 creators!
@@ -903,7 +631,7 @@ const Home = () => {
             <div className="max-w-3xl mb-15 mx-auto space-y-10 text-center">
               <h2 className="text-[64px] font-bold">FAQ</h2>
             </div>
-            <div className="space-y-4">
+            <div className="space-y-2">
               {faqList.map((faq, index: number) => (
                 <div key={index} className="group">
                   <Disclosure>
@@ -988,296 +716,12 @@ const Home = () => {
             </div>
           </div>
         </section>
-        <footer className="mt-20 lg:mt-0">
-          <div className="w-full bg-[url('/images/footer-bg.png')] bg-no-repeat bg-cover">
-            <div className="gl-container px-4 lg:px-6 mx-auto">
-              <div className="pt-16 pb-14">
-                <div className="flex flex-col lg:flex-row items-start justify-between">
-                  <div className="space-y-4">
-                    <h2 className="text-2xl text-white font-bold">Sign up to our newsletter</h2>
-                    <p className="text-white">
-                      Stay up to date with the latest announcement, news, and new features.
-                    </p>
-                  </div>
-                  <div className="flex flex-col lg:flex-row items-start lg:items-center w-full lg:w-auto lg:space-x-3.5 space-y-5 lg:space-y-0 mt-6 lg:mt-0">
-                    <input
-                      type="text"
-                      placeholder="Enter email"
-                      className="w-full lg:w-[400px] max-w-full p-4 rounded-lg border border-gl-3"
-                    />
-                    <button
-                      type="button"
-                      className="flex items-center justify-center px-4 py-4 bg-gl-1 hover:bg-gl-7 border border-gl-1 hover:border-gl-7 rounded-lg text-white hover:text-white transition-all"
-                    >
-                      Subscribe
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <hr />
-            <div className="gl-container px-4 lg:px-6 mx-auto">
-              <div className="pt-18 pb-9">
-                <div className="flex flex-col lg:flex-row items-start justify-between space-y-6 lg:space-y-0">
-                  <div className="space-y-4">
-                    <div className="flex items-center space-x-5 lg:space-x-14 mb-12">
-                      <Image
-                        src="/images/gl-logo-white.svg"
-                        width="150"
-                        height="150"
-                        alt="Logo"
-                        className="w-26 lg:w-30 h-auto"
-                      />
-                      <div className="flex items-center space-x-3 lg:space-x-4">
-                        <Link href={process.env.NEXT_PUBLIC_TWITTER_URL || ""} target="_blank">
-                          <button
-                            type="button"
-                            className="flex items-center justify-center w-8 lg:w-12 h-8 lg:h-12 bg-gl-1 hover:bg-gl-7 rounded-lg transition-all"
-                          >
-                            <Image
-                              src="/images/social-twitter-logo.svg"
-                              width="32"
-                              height="32"
-                              alt="Logo"
-                              className="w-4 lg:w-6 h-4 lg:h-6 object-contain"
-                            />
-                          </button>
-                        </Link>
-                        <Link href={process.env.NEXT_PUBLIC_MEDIUM_URL || ""} target="_blank">
-                          <button
-                            type="button"
-                            className="flex items-center justify-center w-8 lg:w-12 h-8 lg:h-12 bg-gl-1 hover:bg-gl-7 rounded-lg transition-all"
-                          >
-                            <Image
-                              src="/images/social-medium-logo.svg"
-                              width="32"
-                              height="32"
-                              alt="Logo"
-                              className="w-4 lg:w-6 h-4 lg:h-6 object-contain"
-                            />
-                          </button>
-                        </Link>
-                        <Link href={process.env.NEXT_PUBLIC_DISCORD_URL || ""} target="_blank">
-                          <button
-                            type="button"
-                            className="flex items-center justify-center w-8 lg:w-12 h-8 lg:h-12 bg-gl-1 hover:bg-gl-7 rounded-lg transition-all"
-                          >
-                            <Image
-                              src="/images/social-discord-logo.svg"
-                              width="32"
-                              height="32"
-                              alt="Logo"
-                              className="w-4 lg:w-6 h-4 lg:h-6 object-contain"
-                            />
-                          </button>
-                        </Link>
-                      </div>
-                    </div>
-                    <div className="w-full max-w-sm">
-                      <p className="text-white">
-                        Decription Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc
-                        vulputate libero et velit interdum, ac aliquet odio mattis.
-                      </p>
-                    </div>
-                  </div>
-                  <div className="flex flex-row flex-wrap space-x-0 lg:space-x-18">
-                    <div className="w-1/2 lg:w-auto space-y-4 mb-10">
-                      <h2 className="text-xl text-white font-bold">Generate Labs</h2>
-                      <div>
-                        <button
-                          type="button"
-                          onClick={() => setIsOpenComingSoonModal(true)}
-                          className="text-white"
-                        >
-                          Home
-                        </button>
-                      </div>
-                      <div>
-                        <button
-                          type="button"
-                          onClick={() => setIsOpenComingSoonModal(true)}
-                          className="text-white"
-                        >
-                          Careers
-                        </button>
-                      </div>
-                    </div>
-                    <div className="w-1/2 lg:w-auto space-y-4 mb-10">
-                      <h2 className="text-xl text-white font-bold">Product</h2>
-                      <div>
-                        <button
-                          type="button"
-                          onClick={() => setIsOpenComingSoonModal(true)}
-                          className="text-white"
-                        >
-                          NFT Generator
-                        </button>
-                      </div>
-                      <div>
-                        <button
-                          type="button"
-                          onClick={() => setIsOpenComingSoonModal(true)}
-                          className="text-white"
-                        >
-                          Forms
-                        </button>
-                      </div>
-                      <div>
-                        <button
-                          type="button"
-                          onClick={() => setIsOpenComingSoonModal(true)}
-                          className="text-white"
-                        >
-                          Drops
-                        </button>
-                      </div>
-                      <div>
-                        <button
-                          type="button"
-                          onClick={() => setIsOpenComingSoonModal(true)}
-                          className="text-white"
-                        >
-                          Marketplace
-                        </button>
-                      </div>
-                      <div>
-                        <button
-                          type="button"
-                          onClick={() => setIsOpenComingSoonModal(true)}
-                          className="text-white"
-                        >
-                          Careers
-                        </button>
-                      </div>
-                      <div>
-                        <button
-                          type="button"
-                          onClick={() => setIsOpenComingSoonModal(true)}
-                          className="text-white"
-                        >
-                          Courses
-                        </button>
-                      </div>
-                    </div>
-                    <div className="w-1/2 lg:w-auto space-y-4 mb-10">
-                      <h2 className="text-xl text-white font-bold">Generate Labs</h2>
-                      <div>
-                        <button
-                          type="button"
-                          onClick={() => setIsOpenComingSoonModal(true)}
-                          className="text-white"
-                        >
-                          Blog
-                        </button>
-                      </div>
-                      <div>
-                        <button
-                          type="button"
-                          onClick={() => setIsOpenComingSoonModal(true)}
-                          className="text-white"
-                        >
-                          Join Our Community
-                        </button>
-                      </div>
-                      <div>
-                        <button
-                          type="button"
-                          onClick={() => setIsOpenComingSoonModal(true)}
-                          className="text-white"
-                        >
-                          Help Docs
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="py-6 bg-black text-white">
-            <div className="flex flex-col-reverse lg:flex-row items-start lg:items-center justify-between gl-container px-6 mx-auto">
-              <p>© Official GenerateLabs.App 2023</p>
-              <div className="flex items-center space-x-12 mb-4 lg:mb-0">
-                <button type="button" onClick={() => setIsOpenComingSoonModal(true)}>
-                  Privacy and Policy
-                </button>
-                <button type="button" onClick={() => setIsOpenComingSoonModal(true)}>
-                  Term of Services
-                </button>
-              </div>
-            </div>
-          </div>
-        </footer>
-      </main>
+      </MainLayout>
 
-      <Transition appear show={isOpenComingSoonModal} as={Fragment}>
-        <Dialog as="div" className="relative z-10" onClose={() => setIsOpenComingSoonModal(false)}>
-          <Transition.Child
-            as={Fragment}
-            enter="ease-out duration-300"
-            enterFrom="opacity-0"
-            enterTo="opacity-100"
-            leave="ease-in duration-200"
-            leaveFrom="opacity-100"
-            leaveTo="opacity-0"
-          >
-            <div className="fixed inset-0 bg-black bg-opacity-25" />
-          </Transition.Child>
-
-          <div className="fixed inset-0 overflow-y-auto">
-            <div className="flex min-h-full items-center justify-center p-4 text-center">
-              <Transition.Child
-                as={Fragment}
-                enter="ease-out duration-300"
-                enterFrom="opacity-0 scale-95"
-                enterTo="opacity-100 scale-100"
-                leave="ease-in duration-200"
-                leaveFrom="opacity-100 scale-100"
-                leaveTo="opacity-0 scale-95"
-              >
-                <Dialog.Panel className="relative w-full max-w-5xl transform overflow-hidden bg-white rounded-2xl shadow-xl transition-all">
-                  <button
-                    type="button"
-                    className="absolute top-6 right-6 flex items-center justify-center w-10 h-10 bg-white rounded-full"
-                    onClick={() => setIsOpenComingSoonModal(false)}
-                  >
-                    <Icon icon="heroicons-outline:x" className="text-2xl" />
-                  </button>
-                  <div className="w-full bg-black py-20 px-4">
-                    <Image
-                      src="/images/gl-logo-white.svg"
-                      width="200"
-                      height="200"
-                      alt="Logo"
-                      className="w-full max-w-[386px] h-auto mx-auto"
-                    />
-                  </div>
-                  <div className="w-full max-w-[530px] pt-6 lg:pt-8 pb-10 lg:pb-16 px-4 mx-auto">
-                    <h2 className="mb-6 text-3xl lg:text-5xl font-bold">We’re launching soon!</h2>
-                    <p className="mb-8 text-base lg:text-xl text-gl-8">
-                      We’re currently working hard on this page. Subscribe to our Newsletter to get
-                      update when it will be live.
-                    </p>
-                    <div className="flex items-center justify-center w-full space-x-3.5 mt-6">
-                      <input
-                        type="text"
-                        placeholder="Enter email"
-                        className="w-full lg:w-[338px] max-w-full px-4 py-3 rounded-lg border border-gl-3"
-                      />
-                      <button
-                        type="button"
-                        className="flex items-center justify-center px-4 py-3 bg-gl-1 hover:bg-gl-7 border border-gl-1 hover:border-gl-7 rounded-lg text-white hover:text-white transition-all"
-                      >
-                        Subscribe
-                      </button>
-                    </div>
-                  </div>
-                </Dialog.Panel>
-              </Transition.Child>
-            </div>
-          </div>
-        </Dialog>
-      </Transition>
+      <ComingSoonModal
+        isOpen={isOpenComingSoonModal}
+        onClose={(close: any) => setIsOpenComingSoonModal(close)}
+      />
     </>
   );
 };
