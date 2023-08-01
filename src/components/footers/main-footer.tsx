@@ -2,10 +2,40 @@ import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 
+import axios from "axios";
+
 import ComingSoonModal from "../modals/coming-soon-modal";
 
 const MainFooter = () => {
+  const [inputEmail, setInputEmail] = useState<string>("");
+
+  const [inputEmailStatus, setInputEmailStatus] = useState<{ status: string; message: string }>({
+    status: "",
+    message: "",
+  });
+
   const [isOpenComingSoonModal, setIsOpenComingSoonModal] = useState<boolean>(false);
+
+  const handleMailchimpSubscribe = async (event: any) => {
+    event.preventDefault();
+
+    try {
+      await axios.post("/api/newsletter", {
+        email_address: inputEmail,
+        status: "subscribed",
+      });
+      setInputEmail("");
+      setInputEmailStatus({
+        status: "success",
+        message: "You have successfully subscribed.",
+      });
+    } catch (error) {
+      setInputEmailStatus({
+        status: "error",
+        message: "Something when wrong, please try again later.",
+      });
+    }
+  };
 
   return (
     <>
@@ -20,18 +50,33 @@ const MainFooter = () => {
                     Stay up to date with the latest announcement, news, and new features.
                   </p>
                 </div>
-                <div className="flex flex-col lg:flex-row items-start lg:items-center w-full lg:w-auto lg:space-x-3.5 space-y-5 lg:space-y-0 mt-6 lg:mt-0">
-                  <input
-                    type="text"
-                    placeholder="Enter email"
-                    className="w-full lg:w-[400px] max-w-full p-4 rounded-lg border border-gl-3"
-                  />
-                  <button
-                    type="button"
-                    className="flex items-center justify-center px-4 py-4 bg-gl-1 hover:bg-gl-7 border border-gl-1 hover:border-gl-7 rounded-lg text-white hover:text-white transition-all"
+                <div className="flex flex-col space-y-1">
+                  <form
+                    onSubmit={event => handleMailchimpSubscribe(event)}
+                    className="flex flex-col lg:flex-row items-start lg:items-center w-full lg:w-auto lg:space-x-3.5 space-y-5 lg:space-y-0 mt-6 lg:mt-0"
                   >
-                    Subscribe
-                  </button>
+                    <input
+                      type="text"
+                      placeholder="Enter email"
+                      className="w-full lg:w-[400px] max-w-full p-4 rounded-lg border border-gl-3"
+                      onChange={event => setInputEmail(event.target.value)}
+                    />
+                    <button
+                      type="submit"
+                      className="flex items-center justify-center px-4 py-4 bg-gl-1 hover:bg-gl-7 border border-gl-1 hover:border-gl-7 rounded-lg text-white hover:text-white transition-all"
+                    >
+                      Subscribe
+                    </button>
+                  </form>
+                  {inputEmailStatus && (
+                    <p
+                      className={`text-sm ${
+                        inputEmailStatus.status === "success" ? "text-green-200" : "text-red-200"
+                      }`}
+                    >
+                      {inputEmailStatus.message}
+                    </p>
+                  )}
                 </div>
               </div>
             </div>
