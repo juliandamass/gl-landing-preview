@@ -57,6 +57,7 @@ const MainFooter = () => {
                   >
                     <input
                       type="text"
+                      value={inputEmail}
                       placeholder="Enter email"
                       className="w-full lg:w-[400px] max-w-full p-4 rounded-lg border border-gl-3"
                       onChange={event => setInputEmail(event.target.value)}
@@ -153,7 +154,7 @@ const MainFooter = () => {
                       <button
                         type="button"
                         onClick={() => setIsOpenComingSoonModal(true)}
-                        className="text-white"
+                        className="text-white hover:underline transition-all"
                       >
                         Home
                       </button>
@@ -163,7 +164,7 @@ const MainFooter = () => {
                       target="_blank"
                       className="block"
                     >
-                      <button type="button" className="text-white">
+                      <button type="button" className="text-white hover:underline transition-all">
                         Careers
                       </button>
                     </Link>
@@ -174,7 +175,7 @@ const MainFooter = () => {
                       <button
                         type="button"
                         onClick={() => setIsOpenComingSoonModal(true)}
-                        className="text-white"
+                        className="text-white hover:underline transition-all"
                       >
                         NFT Generator
                       </button>
@@ -183,7 +184,7 @@ const MainFooter = () => {
                       <button
                         type="button"
                         onClick={() => setIsOpenComingSoonModal(true)}
-                        className="text-white"
+                        className="text-white hover:underline transition-all"
                       >
                         Forms
                       </button>
@@ -192,7 +193,7 @@ const MainFooter = () => {
                       <button
                         type="button"
                         onClick={() => setIsOpenComingSoonModal(true)}
-                        className="text-white"
+                        className="text-white hover:underline transition-all"
                       >
                         Drops
                       </button>
@@ -201,7 +202,7 @@ const MainFooter = () => {
                       <button
                         type="button"
                         onClick={() => setIsOpenComingSoonModal(true)}
-                        className="text-white"
+                        className="text-white hover:underline transition-all"
                       >
                         Marketplace
                       </button>
@@ -210,16 +211,7 @@ const MainFooter = () => {
                       <button
                         type="button"
                         onClick={() => setIsOpenComingSoonModal(true)}
-                        className="text-white"
-                      >
-                        Careers
-                      </button>
-                    </div>
-                    <div>
-                      <button
-                        type="button"
-                        onClick={() => setIsOpenComingSoonModal(true)}
-                        className="text-white"
+                        className="text-white hover:underline transition-all"
                       >
                         Courses
                       </button>
@@ -231,7 +223,7 @@ const MainFooter = () => {
                       <button
                         type="button"
                         onClick={() => setIsOpenComingSoonModal(true)}
-                        className="text-white"
+                        className="text-white hover:underline transition-all"
                       >
                         Blog
                       </button>
@@ -240,7 +232,7 @@ const MainFooter = () => {
                       <button
                         type="button"
                         onClick={() => setIsOpenComingSoonModal(true)}
-                        className="text-white"
+                        className="text-white hover:underline transition-all"
                       >
                         Join Our Community
                       </button>
@@ -249,7 +241,7 @@ const MainFooter = () => {
                       <button
                         type="button"
                         onClick={() => setIsOpenComingSoonModal(true)}
-                        className="text-white"
+                        className="text-white hover:underline transition-all"
                       >
                         Help Docs
                       </button>

@@ -6,6 +6,7 @@ import { Dialog, Disclosure, Menu, Transition } from "@headlessui/react";
 import { gsap } from "gsap";
 import { Icon } from "@iconify/react";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
+import Typewriter from "typewriter-effect";
 
 import TwitterIcon from "@/components/icons/twitter-icon";
 import MediumIcon from "@/components/icons/medium-icon";
@@ -143,7 +144,7 @@ const faqList = [
   },
   {
     question: `How to sign-up for Beta Access?`,
-    answer: `To get early access to our Beta version, simply enter your email address in the subscribe field provided on our website. By subscribing, you&apos;ll get a chance to be among the first to try out our exciting new features and provide valuable feedback to shape the final product. We&apos;ll keep you updated on the Beta launch date, so stay tuned for exclusive perks and an immersive experience. Join our community of early creators and be a part of the community!`,
+    answer: `To get early access to our Beta version, simply enter your email address in the <span id="click-open-coming-soon-modal" class="underline cursor-pointer">subscribe</span> field provided on our website. By subscribing, you&apos;ll get a chance to be among the first to try out our exciting new features and provide valuable feedback to shape the final product. We&apos;ll keep you updated on the Beta launch date, so stay tuned for exclusive perks and an immersive experience. Join our community of early creators and be a part of the community!`,
   },
   {
     question: `Is the Software Compatible on all Desktop and Mobile Devices?`,
@@ -163,6 +164,8 @@ const Home = () => {
   const containerGalleryRef = useRef<HTMLDivElement>(null);
 
   const [isOpenComingSoonModal, setIsOpenComingSoonModal] = useState<boolean>(false);
+
+  const [helper, setHelper] = useState<number>(0);
 
   useEffect(() => {
     const gallery1 = gallery1Ref.current;
@@ -208,6 +211,24 @@ const Home = () => {
       },
     });
   }, []);
+
+  useEffect(() => {
+    const container = document.getElementById("click-open-coming-soon-modal");
+
+    if (container) {
+      container.addEventListener("click", handleClick);
+    }
+
+    return () => {
+      if (container) {
+        container.removeEventListener("click", handleClick);
+      }
+    };
+  }, [helper]);
+
+  const handleClick = () => {
+    setIsOpenComingSoonModal(true);
+  };
 
   return (
     <>
@@ -268,9 +289,16 @@ const Home = () => {
         <section className="mt-22">
           <div className="gl-container px-4 lg:px-6 mx-auto">
             <div className="max-w-2xl mx-auto space-y-6 lg:space-y-10 text-center">
-              <h2 className="text-[32px] lg:text-5xl font-bold leading-tight">
-                A perfect fit for creators.
-              </h2>
+              <div className="text-[32px] lg:text-5xl font-bold lg:space-y-2">
+                <p>A perfect fit for</p>
+                <Typewriter
+                  options={{
+                    strings: ["Creators", "Designer", "Developer"],
+                    autoStart: true,
+                    loop: true,
+                  }}
+                />
+              </div>
               <h3 className="text-sm lg:text-xl">
                 Whether you&apos;re an artist, a business owner, or an enthusiast, GenerateLabs.App
                 is your gateway for Digital collectibles.
@@ -281,7 +309,7 @@ const Home = () => {
               width="1600"
               height="1600"
               alt="Logo"
-              className="w-full max-w-5xl h-auto mt-4 mx-auto rounded-2xl"
+              className="w-full max-w-6xl h-auto mt-4 mx-auto rounded-2xl"
             />
           </div>
         </section>
@@ -598,7 +626,7 @@ const Home = () => {
             />
             <div className="max-w-3xl mx-auto mt-4 mb-10 text-center">
               <h2 className="text-2xl lg:text-5xl font-bold leading-tight">
-                Join a Community of 2,500+ project founders
+                Join a Community of project founders
               </h2>
             </div>
             <div className="text-center">
@@ -634,7 +662,7 @@ const Home = () => {
             <div className="space-y-2">
               {faqList.map((faq, index: number) => (
                 <div key={index} className="group">
-                  <Disclosure>
+                  <Disclosure as="div" onClick={() => setHelper(helper + 1)}>
                     {({ open }) => (
                       <>
                         <Disclosure.Button className="relative z-[2] flex items-center justify-between w-full px-4 lg:px-10 py-4 lg:py-6 space-x-4 bg-gl-4 group-even:bg-black rounded-2xl text-sm lg:text-xl text-left text-gl-1 group-even:text-white">

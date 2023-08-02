@@ -6,14 +6,12 @@ async function handler(req: any, res: any) {
   mailchimp.setConfig({
     // apiKey: process.env.NEXT_PUBLIC_MAILCHIMP_API_KEY,
     // server: process.env.NEXT_PUBLIC_MAILCHIMP_DC,
-    // apiKey: "d4775d9db0407b380b594ca124399360",
-    // server: "us14",
-    apiKey: "3e08b6d08a77b4d9258ac7f87deedb82",
-    server: "us12",
+    apiKey: "d4775d9db0407b380b594ca124399360",
+    server: "us14",
   });
 
   try {
-    await mailchimp.lists.addListMember("cfa084be47", {
+    await mailchimp.lists.addListMember("fcdc80a5ad", {
       email_address,
       status,
     });
