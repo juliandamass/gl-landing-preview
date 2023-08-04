@@ -1,4 +1,5 @@
 import { Fragment, useEffect, useRef, useState } from "react";
+import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -232,6 +233,14 @@ const Home = () => {
 
   return (
     <>
+      <Head>
+        <title>Generate Labs</title>
+        <meta
+          property="og:image"
+          content="https://cdn-juliandamass.vercel.app/images/image-meta.png"
+        />
+      </Head>
+
       <MainLayout>
         <section className="mt-4">
           <div className="gl-container lg:px-6 mx-auto">
@@ -293,7 +302,13 @@ const Home = () => {
                 <p>A perfect fit for</p>
                 <Typewriter
                   options={{
-                    strings: ["Creators", "Designer", "Developer"],
+                    strings: [
+                      "Designers",
+                      "Developers",
+                      "Business Owners",
+                      "Content Creators",
+                      "Artists",
+                    ],
                     autoStart: true,
                     loop: true,
                   }}
